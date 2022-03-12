@@ -40,7 +40,7 @@ contract Estructuras{
 
     }
     // Declarar una variable de tipo ONG y causa
-    ONG Plinplin = ONG("Plinplin",JoseIngenieros1670)
+    ONG Plinplin = ONG("Plinplin",0x5B38Da6a701c568545dCfcB03FcB875f56beddC4)
     causa ayuda_a_niños = causa(1234,"Ayuda a niños",100000)
 
 }
