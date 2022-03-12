@@ -1,5 +1,5 @@
 pragma solidity ^0.8.0;
-pragma experimental ABIEncoderV2
+pragma experimental ABIEncoderV2;
 
 contract comprarar_strings{
 
@@ -8,13 +8,12 @@ contract comprarar_strings{
         bytes32 hash_i = keccak256(abi.encodePacked(_i));
         bytes32 hash_j = keccak256(abi.encodePacked(_j));
 
-        if (hash_i == hash_j){
-            returns true;
+        if(hash_i == hash_j){
+            return true;
         }
         else{
-            returns false;
+            return false;
         }
-        
     }
 
 }
