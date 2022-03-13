@@ -14,7 +14,7 @@ contract Estructuras{
         uint secret_creditcard_number;
     }
     // Declarar una variable de tipo cliente
-    cliente cliente_1 = cliente(1,"1234567","Tomas","tomasitovdh@hotmail.com",01129836789,1234567891011121, 123)
+    cliente cliente_1 = cliente(1,"1234567","Tomas","tomasitovdh@hotmail.com",1129836789,1234567891011121,123);
 
 
     // Página de compra-venta de productos
@@ -24,7 +24,7 @@ contract Estructuras{
         uint price;
     }
     // Declarar una variable de tipo producto
-    producto producto1 = producto(1234,"Mani King",270)
+    producto producto1 = producto(1234,"Mani King",270);
 
 
     // Proyecto cooperativo de ONGs para ayudar en diversas causas
@@ -40,7 +40,7 @@ contract Estructuras{
 
     }
     // Declarar una variable de tipo ONG y causa
-    ONG Plinplin = ONG("Plinplin",0x5B38Da6a701c568545dCfcB03FcB875f56beddC4)
-    causa ayuda_a_niños = causa(1234,"Ayuda a niños",100000)
+    ONG Plinplin = ONG("Plinplin",0x5B38Da6a701c568545dCfcB03FcB875f56beddC4);
+    causa ayuda_a_crios = causa(1234,"Ayuda a crios",100000);
 
 }
