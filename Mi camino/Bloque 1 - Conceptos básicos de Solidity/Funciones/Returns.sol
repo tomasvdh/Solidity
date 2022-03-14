@@ -12,7 +12,7 @@ contract ValoresDeRetorno{
         return _a*_b;
     }
 
-    // Función para saber si el número entero es par o impar
+    // Función que devuelve true si el número es par, y false si el número es impar
     function EsNumeroPar(uint _numero) public pure returns(bool){
 
         bool flag;
