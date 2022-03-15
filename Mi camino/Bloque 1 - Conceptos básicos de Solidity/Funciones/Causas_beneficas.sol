@@ -31,8 +31,15 @@ contract causas_beneficas{
     }
 
     // Función que permite donar a una causa
-    function donarCausa(string memory _nombre_causa, uint _cantidad_dinero) public returns(bool){
-
+    function donarCausa(string memory _nombre, uint _cantidad_a_donar) public returns(bool){
+        bool aceptar_donacion=true;
+        if(objetivoCumplido(_nombre, _cantidad_a_donar)){
+            causas[_nombre].dinero_recaudado = (causas[_nombre].dinero_recaudado+_cantidad_a_donar);
+        }
+        else{
+            aceptar_donacion=false;
+        }
+        return aceptar_donacion;
     }
 
 }
