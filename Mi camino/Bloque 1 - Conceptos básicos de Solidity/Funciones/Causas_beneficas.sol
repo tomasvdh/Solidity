@@ -42,4 +42,13 @@ contract causas_beneficas{
         return aceptar_donacion;
     }
 
+    // Función que dice si se ha llegado al precio objetivo
+    function ComprobarPrecioObjetivo(string memory _nombre) public view returns(bool, uint){
+        bool limite_alcanzado = false;
+        Causa memory causa = causas[_nombre];
+        if(causa.dinero_recaudado>=causa.precio_objetivo){
+            limite_alcanzado = true;
+        }
+        return (limite_alcanzado, causa.dinero_recaudado);
+    }
 }
