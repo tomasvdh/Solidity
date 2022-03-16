@@ -1,5 +1,6 @@
 pragma solidity ^0.8.0;
-import "./Banco.sol";
+// import "./Banco.sol";
+import {Banco,Banco2} from "./Banco.sol";
 
 contract Cliente is Banco{
 
