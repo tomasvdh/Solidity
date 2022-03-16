@@ -14,3 +14,11 @@ contract Banco{
         clientes[_nombre] = cliente(_nombre, msg.sender, 0);
     }
 }
+
+contract Banco2{
+
+}
+
+contract Banco3{
+    
+}
