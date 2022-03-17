@@ -20,7 +20,7 @@ contract Require{
     string[] nombres;
     function NuevoNombre(string memory _nombre) public{
         for(uint i=0; i<nombres.length; i++){
-            require(keccak256(abi.encodePacked(_nombre))==keccak256(abi.encodePacked(nombres[i])), "El nombre ya esta en la lista.");
+            require(keccak256(abi.encodePacked(_nombre))!=keccak256(abi.encodePacked(nombres[i])), "El nombre ya esta en la lista.");
         }
         nombres.push(_nombre);
     }
