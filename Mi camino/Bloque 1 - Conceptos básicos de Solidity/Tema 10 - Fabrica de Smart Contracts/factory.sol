@@ -14,7 +14,6 @@ contract SmartContract2 {
     address public owner;
     constructor (address _direccion){
         owner = _direccion;
-    }
-    
+    } 
 }
 
