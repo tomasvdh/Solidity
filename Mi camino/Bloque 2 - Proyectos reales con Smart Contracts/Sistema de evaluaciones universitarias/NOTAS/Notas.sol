@@ -41,6 +41,7 @@ contract notas{
         emit alumno_evaluado(hash_id_alumno, _nota_alumno);
     }
 
+    // Control de las funciones ejecutables por el profesor
     modifier UnicamenteProfesor(address _direccion){
         // Requiere que la direccion introducida por parámetro sea igual al owner del contrato
         require(_direccion == profesor, "No tienes permisos para ejecutar esta funcion.");
