@@ -12,6 +12,26 @@ pragma experimental ABIEncoderV2;
 
 contract votacion{
 
+    // Dirección del propietario del contrato
+    address public owner;
 
+    // Constructor
+    constructor(){
+        owner = msg.sender;
+    }
+
+    // Relación entre el nombre del candidato y el hash de sus datos personales
+    mapping(string => bytes32) id_candidato;
+
+    // Relación entre el nombre del candidato y el numero de votos
+    mapping(string => uint) votos_candidato;
+
+    // Lista para almacenar los nombres de los candidatos
+    string [] candidatos;
+
+    
+
+
+    
 
 }
