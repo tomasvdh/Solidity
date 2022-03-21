@@ -99,7 +99,7 @@ contract votacion{
         // Recorrer el array de candidatos para actualizar el string resultados
         for(uint i=0; i<candidatos.length;i++){
             // Actualizar el string resultados y añadir el candidato que ocupa la posición i de la lista de candidatos y su número de votos
-            resultados = string(abi.encodePacked(resultados , "(" , candidatos[i] , "," , uint2str(VerVotos(candidatos[i])) , ")" ));
+            resultados = string(abi.encodePacked(resultados , "(" , candidatos[i] , "," , uint2str(VerVotos(candidatos[i])) , ")" , " "));
         }
         // Devolver los resultados
         return resultados;
