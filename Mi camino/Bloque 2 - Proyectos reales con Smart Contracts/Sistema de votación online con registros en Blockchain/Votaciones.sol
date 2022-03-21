@@ -63,6 +63,11 @@ contract votacion{
         votos_candidato[_candidato]++;
     }
 
+    // Función para ver los votos de un candidato
+    function VerVotos(string memory _candidato) public view returns(uint){
+        // Devolver el número de votos del candidato
+        return votos_candidato[_candidato];
+    }
 
 
 
