@@ -126,11 +126,11 @@ contract votacion{
             }
         }
         // Comprobar si hay un empate entre los candidatos
-        if(flag = true){
+        if(flag == true){
             // Informar del empate
             ganador = "Hay un empate entre los candidatos";
         }
-        // Devolver el ganador
+        // Devolver
         return ganador;
     }
 }
