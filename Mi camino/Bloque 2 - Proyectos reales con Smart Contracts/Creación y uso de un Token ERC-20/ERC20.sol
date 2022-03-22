@@ -11,14 +11,14 @@ interface IERC20{
     // Función que devuelve la cantidad de tokens que tiene una dirección indicada por parámetro
     function balaceOf(address _account) external view returns(uint256);
 
-    // Función que devuelve el número de tokens que el gastador (spender) podrá gastar en nombre del propietario (owner)
-    function allowance(address _owner, address _spender) external view returns(uint256);
+    // Función que devuelve el número de tokens que el delegado (delegate) podrá gastar en nombre del propietario (owner)
+    function allowance(address _owner, address _delegate) external view returns(uint256);
 
     // Función que devuelve un valor booleano con el esultado de la operación indicada
-    function trasnfer(address _recipient, uint256 _amount) external returns(bool);
+    function transfer(address _recipient, uint256 _numTokens) external returns(bool);
 
     // Función que devuelve un valor booleano con el resultado de la operación de gasto
-    function approve(address _spender, uint256 _amount) external returns(bool);
+    function approve(address _delegate, uint256 _numTokens) external returns(bool);
 
     // Función que devuelve un valor booleano con el resultado de la operación de paso de una cantidad de tokeans usando el método allowance
     function transferFrom(address _sender, address _recipient, uint256 _amount) external returns(bool);
@@ -29,35 +29,62 @@ interface IERC20{
     event Transfer(address indexed from, address indexed to, uint256 _tokens);
 
     // Evento que se debe emitir cuando se establece una asignación con el método allowance()
-    event Approval(address indexed _owner, address indexed _spender, uint256 _tokens)
+    event Approval(address indexed _owner, address indexed _spender, uint256 _tokens);
 }
 
-// Contrato 
+// Implementación de las funciones del token ERC20
 contract ERC20Basic is IERC20{
+
+    string public constant name = "ERC20BlockchainAZ";
+    string public constant symbol = "ERC20";
+    uint8 public constant decimals = 18;
 
 
     event Transfer(address indexed from, address indexed to, uint256 _tokens);
-    event Approval(address indexed _owner, address indexed _spender, uint256 _tokens)
+    event Approval(address indexed _owner, address indexed _delegate, uint256 _tokens);
+
+
+    using SafeMath for uint256;
+
+    mapping(address => uint) balances;
+    mapping(address => mapping(address => uint)) allowed;
+    uint256 totalSupply_; 
+
+    constructor(uint256 initialSupply){
+        totalSupply_ = initialSupply;
+        balances[msg.sender] = totalSupply_;
+    }
 
 
     function totalSupply() public override view returns (uint256){
-        return 0;
-    }   
-
-    function balaceOf(address _account) public override view returns(uint256){
-        return 0;
+        return totalSupply_;
+    }
+    
+    function increaseTotalSupply(uint _newTokensAmmount) public{
+        totalSupply_ += _newTokensAmmount;
+        balances[msg.sender] += _newTokensAmmount;
     }
 
-    function allowance(address _owner, address _spender) public override view returns(uint256){
-        return 0;
+    function balaceOf(address _tokenOwner) public override view returns(uint256){
+        return balances[_tokenOwner];
     }
 
-    function trasnfer(address _recipient, uint _amount) public override returns(bool){
-        return false;
+    function allowance(address _owner, address _delegate) public override view returns(uint256){
+        return allowed[_owner][_delegate];
     }
 
-    function approve(address _spender, uint256 _amount) public override returns(bool){
-        return false;
+    function transfer(address _recipient, uint _numTokens) public override returns(bool){
+        require(_numTokens <= balances[msg.sender]);
+        balances[msg.sender] = balances[msg.sender].sub(_numTokens);
+        balances[_recipient] = balances[_recipient].add(_numTokens);
+        emit Transfer(msg.sender, _recipient, _numTokens);
+        return true;
+    }
+
+    function approve(address _delegate, uint256 _numTokens) public override returns(bool){
+        allowed[msg.sender][_delegate] = _numTokens;
+        emit Approval(msg.sender, _delegate, _numTokens);
+        return true;
     }
 
     function transferFrom(address _sender, address _recipient, uint256 _amount) public override returns(bool){
