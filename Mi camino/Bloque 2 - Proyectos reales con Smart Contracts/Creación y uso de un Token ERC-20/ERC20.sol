@@ -3,6 +3,12 @@ pragma solidity ^0.8.0;
 pragma experimental ABIEncoderV2;
 import "./SafeMath.sol";
 
+
+// Tomás -> 0x5B38Da6a701c568545dCfcB03FcB875f56beddC4
+// Juan Pedro -> 0xAb8483F64d9C6d1EcF9b849Ae677dD3315835cb2
+// Isabella -> 0x4B20993Bc481177ec7E8f571ceCaE8A9e22C02db
+
+
 // Interface del token ERC20
 interface IERC20{
     // Función que devuelve la cantidad de tokens en existencia
@@ -37,7 +43,7 @@ contract ERC20Basic is IERC20{
 
     string public constant name = "ERC20BlockchainAZ";
     string public constant symbol = "ERC20";
-    uint8 public constant decimals = 18;
+    uint8 public constant decimals = 2;
 
 
     event Transfer(address indexed from, address indexed to, uint256 _tokens);
