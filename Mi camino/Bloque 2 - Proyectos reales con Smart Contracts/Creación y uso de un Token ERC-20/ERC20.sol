@@ -21,15 +21,15 @@ interface IERC20{
     function approve(address _delegate, uint256 _numTokens) external returns(bool);
 
     // Función que devuelve un valor booleano con el resultado de la operación de paso de una cantidad de tokeans usando el método allowance
-    function transferFrom(address _sender, address _recipient, uint256 _amount) external returns(bool);
+    function transferFrom(address _sender, address _buyer, uint256 _numTokens) external returns(bool);
 
 
 
     // Evento que se debe emitir cuando una cantidad de tokens pase de un origen a un destino
-    event Transfer(address indexed from, address indexed to, uint256 _tokens);
+    // event Transfer(address indexed from, address indexed to, uint256 _tokens);
 
     // Evento que se debe emitir cuando se establece una asignación con el método allowance()
-    event Approval(address indexed _owner, address indexed _spender, uint256 _tokens);
+    // event Approval(address indexed _owner, address indexed _spender, uint256 _tokens);
 }
 
 // Implementación de las funciones del token ERC20
@@ -87,7 +87,13 @@ contract ERC20Basic is IERC20{
         return true;
     }
 
-    function transferFrom(address _sender, address _recipient, uint256 _amount) public override returns(bool){
-        return false;
+    function transferFrom(address _owner, address _buyer, uint256 _numTokens) public override returns(bool){
+        require(_numTokens <= balances[_owner]);
+        require(_numTokens <= allowed[_owner][msg.sender]);
+        balances[_owner] = balances[_owner].sub(_numTokens);
+        allowed[_owner][msg.sender] = allowed[_owner][msg.sender].sub(_numTokens);
+        balances[_buyer] = balances[_buyer].add(_numTokens);
+        emit Transfer(_owner, _buyer, _numTokens);
+        return true;
     }
 }
